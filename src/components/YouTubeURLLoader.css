@@ -1,0 +1,10 @@
+
+.youtube-url-loader-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.youtube-url-loader-input {
+    flex-grow: 1;
+    margin-right: 10px;
+}

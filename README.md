@@ -1,4 +1,15 @@
-# Getting Started with Create React App
+# Unilingo Challenge
+
+
+## Requirements
+
+Configure YouTube Data API v3 from [Google Developer Console](), then
+configure the api key in the .env
+
+For [YouTube Audio Transcript API](https://app.transcribetube.com/settings/api-access), you must
+to signup and to create an API Key.
+
+[Edenai](https://app.edenai.run) to translate text
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
