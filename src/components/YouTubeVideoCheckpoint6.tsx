@@ -11,7 +11,7 @@ function YouTubeVideoCheckpoint6({
 }) {
     
     return <Space direction='vertical'>
-        <Descriptions title="Checkpoint 5" bordered layout='vertical' column={{
+        <Descriptions title="Checkpoint 6" bordered layout='vertical' column={{
             sm: 1,
             lg: 1,
             md: 1,
