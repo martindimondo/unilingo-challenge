@@ -7,7 +7,7 @@ import useOCR from "./useOCR";
 
 
 
-function useYouTube() {
+function useYouTube({ onChangeUrl }: { onChangeUrl?: (url: string) => void }) {
     const [url, loadFromURL] = useState<string | null>();
     const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
     const [statistics, setStatistics] = useState<YoutubeVideoStatistics | null>(null)
@@ -86,6 +86,9 @@ function useYouTube() {
 
     useEffect(() => {
         fetchAllData(url)
+        if (onChangeUrl && url) {
+            onChangeUrl(url)
+        }
     }, [url])
 
     return {

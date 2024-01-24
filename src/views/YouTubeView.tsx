@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Button, Space, DatePicker, version, Layout, theme, Row, Col, Card } from 'antd';
 import { Content } from "antd/es/layout/layout";
 import YouTubeURLLoader from "../components/YouTubeURLLoader";
@@ -9,12 +9,16 @@ import YouTubeVideoCheckpoint4 from "../components/YouTubeVideoCheckpoint4";
 import YouTubeVideoCheckpoint5 from "../components/YouTubeVideoCheckpoint5";
 import YouTubeVideoCheckpoint6 from "../components/YouTubeVideoCheckpoint6";
 import YouTubeVideoCheckpoint7 from "../components/YouTubeVideoCheckpoint7";
+import useFirebase from "../hooks/useFirebase";
 
 
 function YouTubeView() {
     const {
-        token: { colorBgContainer, borderRadiusLG },
-    } = theme.useToken();
+        token: { borderRadiusLG },
+    } = theme.useToken()
+
+    const { getValue, setValue } = useFirebase()
+    const [initialUrl, setInitialUrl] = useState('')
 
     const {
         loadFromURL,
@@ -25,7 +29,18 @@ function YouTubeView() {
         refetch,
         translatedText,
         recognizedText,
-    } = useYouTube()
+    } = useYouTube({
+        onChangeUrl: (url: string) => {
+            setValue('userURL', url)
+        }
+    })
+
+    useEffect(() => {
+        getValue('userURL').then(value => {
+            const storedURL = value.val();
+            setInitialUrl(storedURL)
+        });
+    }, [])
 
     return <Layout>
         <Content style={{ padding: '0 48px' }}>
@@ -43,7 +58,10 @@ function YouTubeView() {
                 <Row>
                     <Col xs={12}>
                         <Card>
-                            <YouTubeURLLoader onLoadClick={(url) => loadFromURL(url)} />
+                            <YouTubeURLLoader 
+                                initialUrl={initialUrl}
+                                onLoadClick={(url) => loadFromURL(url)} 
+                            />
                         </Card>
                     </Col>
                 </Row>

@@ -33,7 +33,7 @@ function YouTubeVideoCheckpoint2({
                 </Descriptions.Item>
             }
         </Descriptions>
-        <Button onClick={forceRefetch}>Refrescar</Button>
+        <Button onClick={forceRefetch}>Refresh</Button>
     </Space>
 }
 
