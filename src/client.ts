@@ -38,31 +38,6 @@ export const fetchCaptions = (id: string, parts: YouTubePart[]) => (
         }
     })
 )
-export const fetchCaptionsV2 = (id: string, parts: YouTubePart[]) => (
-    axios.get<CaptionReponse>(`https://gdata.youtube.com/feeds/api/videos/${id}/captions`, {
-        params: {
-            part: parts.join(','),
-            videoId: id,
-            ...YouTubeBaseConfig
-        }
-    })
-)
-
-
-
-/*axios.get<any>(`${YOUTUBE_ENDPOINT_BASE_URL}/captions/id`, {
-    params: {
-        id,
-        ...YouTubeBaseConfig
-    }
-})*/
-export const downloadCaption = (videoId: string, id: string) => (
-    axios.get<any>(`https://youtube.googleapis.com/youtube/v3/captions/${id}`, {
-        params: {
-            ...YouTubeBaseConfig
-        }
-    })
-)
 
 export const fetchTranscriptions = (url: string, start: number, end: number) => {
     return new Promise<{ lang: string, captions: string[] }>((resolve, reject) => {
@@ -78,7 +53,6 @@ export const fetchTranscriptions = (url: string, start: number, end: number) => 
             var matches = regex.exec(parsedData);
             if (matches && matches.length > 1) {
                 const videoData = JSON.parse(matches[1])
-                console.log(videoData)
                 const captionTrack = videoData.captions.playerCaptionsTracklistRenderer.captionTracks[0]
                 const lang = captionTrack.languageCode;
 

@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react";
+import { fetchCaptions, fetchComments, fetchTranscriptions, fetchYoutubeVideo } from "../client";
+import { ThreadCommentItem, YoutubeVideoSnippet, YoutubeVideoStatistics } from "../types";
 import { getVideoIdFromUrl } from "../utils";
-import { downloadCaption, fetchCaptions, fetchCaptionsV2, fetchComments, fetchTranscriptions, fetchYoutubeVideo } from "../client";
-import { ThreadCommentItem, YoutubeVideoResponse, YoutubeVideoSnippet, YoutubeVideoStatistics } from "../types";
-import useTranslation from "./useTranslations";
 import useOCR from "./useOCR";
+import useTranslation from "./useTranslations";
 
 
 
